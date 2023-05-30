@@ -1,0 +1,160 @@
+<h2 style="text-align: center;">Vorbeste cu un Robot</h2>
+  <div class="chat-container" style="width: 100%; max-width: 800px;">
+    <div class="chat-header">
+      <h2>Robotul Robert</h2>
+    </div>
+    <div class="chat-messages"></div>
+    <div class="chat-input">
+      <form id="chat-form">
+        <input
+          type="text"
+          name="message"
+          placeholder="Scrie mesajul tau aici..."
+          required
+          autocomplete="off"
+        />
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+</div>
+<style>
+  .chat-container {
+    margin: 50px auto;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .chat-header {
+    padding: 10px;
+    background-color: #2d2d2d;
+    color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+
+  .chat-messages {
+    padding: 10px;
+    max-height: 400px;
+    overflow-y: scroll;
+  }
+
+  .chat-messages p {
+    margin-bottom: 10px;
+  }
+
+  .user {
+    text-align: right;
+    color: #555;
+  }
+
+  .chatbot {
+    text-align: left;
+    color: #333;
+  }
+
+  .chat-input {
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+
+  .chat-input input[type="text"] {
+    padding: 10px;
+    border: none;
+    width: 80%;
+  }
+
+  .chat-input button[type="submit"] {
+    padding: 10px;
+    border: none;
+    background-color: #4caf50;
+    color: #fff;
+    cursor: pointer;
+    width: 20%;
+  }
+</style>
+    <script>
+        const chatMessages = document.querySelector(".chat-messages");
+const chatForm = document.querySelector("#chat-form");
+
+chatForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const inputField = chatForm.querySelector("input[type=text]");
+  const message = inputField.value;
+  displayMessage(message, "user");
+  getChatbotResponse(message);
+  inputField.value = "";
+});
+
+function getChatbotResponse(message) {
+  const responses = [
+    "Hello!",
+    "How are you?",
+    "What's your name?",
+    "Where are you from?",
+    "What do you like to do?",
+    "Do you have any hobbies?",
+    "What's your favorite food?",
+    "What's your favorite movie?",
+    "What kind of music do you like?",
+    "What's your favorite color?",
+  ];
+  const randomIndex = Math.floor(Math.randomresponses.length);
+const response = responses[randomIndex];
+setTimeout(() => {
+displayMessage(response, "chatbot");
+}, 1000);
+}
+function displayMessage(message, sender) {
+const div = document.createElement("div");
+div.classList.add(sender);
+const p = document.createElement("p");
+p.textContent = message;
+div.appendChild(p);
+chatMessages.appendChild(div);
+chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+function getChatbotResponse(message) {
+  const lowerCaseMessage = message.toLowerCase();
+  const swearWords = ["Dumb"];
+  let response;
+  if (lowerCaseMessage.includes("hello")) {
+    const responses = ["Hi there!", "Hello!", "Greetings!"];
+    const randomIndex = Math.floor(Math.random() * responses.length);
+    response = responses[randomIndex];
+  } else if (lowerCaseMessage.includes("how are you?")) {
+    const responses = ["I'm doing well, thanks for asking!", "I'm a Robert the Robot, I don't have feelings, but thanks for asking!", "I'm programmed to respond, so I'm doing well!"];
+    const randomIndex = Math.floor(Math.random() * responses.length);
+    response = responses[randomIndex];
+      } else if (lowerCaseMessage.includes("where are you from?")) {
+    const responses = ["I'm from Romania, thanks for asking!", "I'm from the country of vampires, Romania BOO!"];
+    const randomIndex = Math.floor(Math.random() * responses.length);
+    response = responses[randomIndex];
+          } else if (lowerCaseMessage.includes("what do you like to do")) {
+    const responses = ["I like talking to friendly people like you!", "I like talking to you!"];
+    const randomIndex = Math.floor(Math.random() * responses.length);
+    response = responses[randomIndex];
+  } else if (lowerCaseMessage.includes("what is your name?")) {
+    const responses = ["My name is Robert!", "I'm Robert, nice to meet you!", "You can call me Robert!"];
+    const randomIndex = Math.floor(Math.random() * responses.length);
+    response = responses[randomIndex];
+    } else if (lowerCaseMessage.includes("what is your favorite color?")) {
+    const responses = ["My favorite color is Blue, thanks for asking!", "Blue"];
+    const randomIndex = Math.floor(Math.random() * responses.length);
+    response = responses[randomIndex];
+  } else if (swearWords.some(word => lowerCaseMessage.includes(word))) {
+    response = "I'm sorry, please don't use that language.";
+  } else {
+    const responses = ["I'm not sure what you mean.", "Can you please rephrase that?", "Sorry, I didn't understand."];
+    const randomIndex = Math.floor(Math.random() * responses.length);
+    response = responses[randomIndex];
+  }
+  setTimeout(() => {
+    displayMessage(response, "chatbot");
+  }, 1000);
+}
+
+    </script>
